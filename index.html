@@ -11,12 +11,10 @@
       font-family: 'YujiMai';
       src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
     }
-
     @font-face {
       font-family: 'NotoSerifJP-Regular';
       src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
     }
-
     @font-face {
       font-family: 'NotoSerifJP-Bold';
       src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
@@ -33,7 +31,7 @@
       color: #000;
     }
 
-    /* ==== 背景スライドショー ==== */
+    /* ==== 背景スライド ==== */
     .background {
       position: fixed;
       top: 0;
@@ -46,39 +44,99 @@
       transition: opacity 2s ease-in-out;
       z-index: -1;
     }
+    .background.active { opacity: 1; }
 
-    .background.active {
-      opacity: 1;
-    }
-
-    /* ==== ロゴ（固定表示） ==== */
+    /* ==== 固定ロゴ ==== */
     .logo {
       position: fixed;
       top: 30px;
       left: 40px;
       font-size: 2.2rem;
       color: white;
-      z-index: 10;
+      z-index: 40; /* ← 最前面に！ */
       letter-spacing: 0.1em;
       text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: all 0.6s ease;
+    }
+    .logo.menu-open {
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
     }
 
-    /* ==== コンテンツ領域 ==== */
+    /* ==== メニューボタン ==== */
+    .menu-button {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 1.2rem;
+      color: white;
+      z-index: 50;
+      background: none;
+      border: none;
+      font-family: 'YujiMai', serif;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+      transition: opacity 0.3s ease;
+    }
+
+    /* ==== メニューオーバーレイ ==== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 30; /* ← ロゴより下 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ==== メニューリンク ==== */
+    .menu-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 80px;
+      text-align: center;
+    }
+    .menu-links a {
+      font-family: 'NotoSerifJP-Bold', serif;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s;
+    }
+    .menu-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* ==== 白背景コンテンツ ==== */
     .content {
       position: relative;
       background: #fff;
-      margin-top: 100vh; /* 背景スライドの下から始まる */
+      margin-top: 100vh;
       padding: 120px 20px 160px;
       text-align: center;
     }
-
     .content h1 {
       font-family: 'NotoSerifJP-Bold', serif;
       font-size: 2rem;
       margin-bottom: 40px;
       letter-spacing: 0.05em;
     }
-
     .content p {
       font-family: 'NotoSerifJP-Regular', serif;
       font-size: 1.1rem;
@@ -86,7 +144,6 @@
       margin: 0 auto;
       max-width: 700px;
     }
-
     .content p strong {
       display: block;
       font-family: 'NotoSerifJP-Bold', serif;
@@ -100,13 +157,28 @@
   <!-- 固定ロゴ -->
   <div class="logo">庭style</div>
 
+  <!-- メニューボタン -->
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
   <!-- 背景スライド -->
   <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
 
-  <!-- 白いコンテンツ領域 -->
+  <!-- 白いコンテンツ -->
   <section class="content">
     <h1>井ノ岡里子の絵とその空間演出</h1>
     <p>
@@ -115,26 +187,37 @@
     </p>
   </section>
 
-  <!-- 背景フェードスクリプト -->
   <script>
+    // 背景フェード
     const slides = document.querySelectorAll('.background');
     let current = 0;
-
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
     }
-
     function nextSlide() {
       current = (current + 1) % slides.length;
       showSlide(current);
     }
-
-    // 初期表示
-    showSlide(current);
-    // 6秒ごとに切り替え
     setInterval(nextSlide, 6000);
+
+    // メニュー開閉
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.querySelector('.logo');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        menuOverlay.classList.add('active');
+        menuBtn.textContent = 'close';
+        logo.classList.add('menu-open');
+      } else {
+        menuOverlay.classList.remove('active');
+        menuBtn.textContent = 'menu';
+        logo.classList.remove('menu-open');
+      }
+    });
   </script>
 
 </body>
