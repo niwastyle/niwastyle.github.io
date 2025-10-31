@@ -8,12 +8,16 @@
   <style>
     /* ==== フォント ==== */
     @font-face {
+      font-family: 'YujiMai';
+      src: url('../file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+    }
+    @font-face {
       font-family: 'NotoSerifJP-Regular';
-      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+      src: url('../file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
     }
     @font-face {
       font-family: 'NotoSerifJP-Bold';
-      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+      src: url('../file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
     }
 
     /* ==== 基本設定 ==== */
@@ -22,9 +26,9 @@
       padding: 0;
       width: 100%;
       min-height: 100vh;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'YujiMai', serif;
       background-color: #fff;
-      color: #222;
+      color: #000;
     }
 
     /* ==== 固定ロゴ ==== */
@@ -33,11 +37,16 @@
       top: 30px;
       left: 40px;
       font-size: 2.2rem;
-      color: black;
+      color: white;
       z-index: 40;
       letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: all 0.6s ease;
-      font-family: 'NotoSerifJP-Bold', serif;
+    }
+    .logo.menu-open {
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
     }
 
     /* ==== メニューボタン ==== */
@@ -46,56 +55,112 @@
       top: 30px;
       right: 40px;
       font-size: 1.2rem;
-      color: black;
+      color: white;
       z-index: 50;
       background: none;
       border: none;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'YujiMai', serif;
       letter-spacing: 0.1em;
       cursor: pointer;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
       transition: opacity 0.3s ease;
     }
 
-    /* ==== コンテンツ ==== */
-    .content {
-      max-width: 800px;
-      margin: 160px auto 100px;
-      padding: 0 20px;
+    /* ==== メニューオーバーレイ ==== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .content h1 {
+    /* ==== メニューリンク ==== */
+    .menu-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 80px;
+      text-align: center;
+    }
+    .menu-links a {
+      font-family: 'NotoSerifJP-Bold', serif;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s;
+    }
+    .menu-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* ==== NEWS コンテンツ ==== */
+    main {
+      max-width: 900px;
+      margin: 180px auto 120px;
+      padding: 0 20px;
+      font-family: 'NotoSerifJP-Regular', serif;
+      color: #000;
+    }
+
+    h1 {
       font-family: 'NotoSerifJP-Bold', serif;
       font-size: 2.2rem;
-      letter-spacing: 0.1em;
-      text-align: center;
       margin-bottom: 60px;
-    }
-
-    /* ==== トピックボックス ==== */
-    .topic {
-      background: linear-gradient(135deg, #dcd0ff 0%, #f8d3e5 100%);
-      border-radius: 12px;
-      padding: 40px 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .topic-date {
-      font-size: 1rem;
-      margin-bottom: 8px;
-      color: #555;
       letter-spacing: 0.05em;
+      text-align: center;
     }
 
-    .topic-title {
-      font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 1.5rem;
+    .news-item {
+      border-top: 1px solid #ddd;
+      padding: 40px 0;
+    }
+
+    .news-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
       margin-bottom: 20px;
-      color: #222;
     }
 
-    .topic-body {
-      line-height: 1.9;
+    .news-date {
+      font-size: 1rem;
+      color: #555;
+      font-family: 'NotoSerifJP-Regular', serif;
+    }
+
+    .news-tag {
+      background: linear-gradient(to right, #c7b7ff, #f7bde2);
+      color: #333;
+      font-size: 0.9rem;
+      font-family: 'NotoSerifJP-Bold', serif;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .news-title {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .news-body {
       font-size: 1.05rem;
+      line-height: 2;
       white-space: pre-line;
     }
   </style>
@@ -108,14 +173,29 @@
   <!-- メニューボタン -->
   <button class="menu-button" id="menuBtn">menu</button>
 
-  <!-- コンテンツ -->
-  <section class="content">
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- NEWS コンテンツ -->
+  <main>
     <h1>NEWS</h1>
 
-    <div class="topic">
-      <div class="topic-date">2025.10.31</div>
-      <div class="topic-title">神戸文化祭のお知らせ（10/31）</div>
-      <div class="topic-body">
+    <article class="news-item">
+      <div class="news-header">
+        <div class="news-date">2025.10.31</div>
+        <div class="news-tag">おしらせ</div>
+      </div>
+      <div class="news-title">神戸文化祭のお知らせ（10/31）</div>
+      <div class="news-body">
 今年も神戸文化祭に出展致します。「純粋直感 Zoo」と題して、王子動物園内、動物科学資料館におります。旗みたらお声掛けください。
 
 【フラッガー】井ノ岡里子（日本画家）  
@@ -126,8 +206,30 @@
 
 お近くまでお越しの際はぜひご参加ください。
       </div>
-    </div>
-  </section>
+    </article>
+
+  </main>
+
+  <script>
+    // メニュー開閉
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.querySelector('.logo');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        menuOverlay.classList.add('active');
+        menuBtn.textContent = 'close';
+        logo.classList.add('menu-open');
+      } else {
+        menuOverlay.classList.remove('active');
+        menuBtn.textContent = 'menu';
+        logo.classList.remove('menu-open');
+      }
+    });
+  </script>
 
 </body>
 </html>
