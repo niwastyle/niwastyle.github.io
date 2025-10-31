@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
+  <style>
+    @font-face {
+      font-family: 'YujiMai';
+      src: url('/file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'YujiMai', serif;
+    }
+
+    body {
+      background: url('/file/back.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* 白フィルターを薄く重ねる */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.15); /* 白を15%だけ重ねる */
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 20px 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #222;
+      margin: 0;
+      letter-spacing: 0.1em;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>庭style</h1>
+  </header>
+</body>
+</html>
