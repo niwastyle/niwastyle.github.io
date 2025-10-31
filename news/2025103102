@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個展のお知らせ｜庭style</title>
+  <link rel="stylesheet" href="/news/style.css">
+</head>
+<body>
+
+  <!-- 固定ロゴ（リンク付き） -->
+  <a href="/" class="logo" id="logo">庭style</a>
+
+  <!-- メニューボタン -->
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- NEWS内容 -->
+  <main class="news">
+    <h1>NEWS</h1>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="date">2025.10.31</span>
+        <span class="topic topic-お知らせ">お知らせ</span>
+      </div>
+      <h2>個展のお知らせ（10/31）</h2>
+      <p>
+11/1〜11/9 芦屋のエンギャラリーさんで個展をします。是非お立ち寄り下さい。
+      </p>
+    </article>
+  </main>
+
+  <script>
+    // メニュー開閉
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.getElementById('logo');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        menuOverlay.classList.add('active');
+        menuBtn.textContent = 'close';
+        menuBtn.classList.add('menu-open');
+        logo.classList.add('menu-open');
+      } else {
+        menuOverlay.classList.remove('active');
+        menuBtn.textContent = 'menu';
+        menuBtn.classList.remove('menu-open');
+        logo.classList.remove('menu-open');
+      }
+    });
+  </script>
+
+</body>
+</html>
