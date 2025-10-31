@@ -58,12 +58,13 @@
       margin-top: 40px;
     }
     .pagination button {
-      background: none;
+      background: #fff;
       border: 1px solid #ccc;
       border-radius: 4px;
       padding: 6px 12px;
       font-family: 'NotoSerifJP-Regular', serif;
       cursor: pointer;
+      color: #000;
       transition: all 0.3s;
     }
     .pagination button.active {
@@ -73,6 +74,17 @@
     }
     .pagination button:hover {
       background: #eee;
+    }
+
+    /* ==== フッター ==== */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 40px 0 30px;
+      color: #333;
+      font-family: 'NotoSerifJP-Regular', serif;
+      border-top: 1px solid #ddd;
+      margin-top: 60px;
     }
   </style>
 </head>
@@ -120,9 +132,9 @@
 
     <!-- ページネーション -->
     <div class="pagination" id="pagination"></div>
-
   </main>
 
+  <!-- コピーライト -->
   <footer>
     © Copyright Niwa Style All Rights Reserved.
   </footer>
