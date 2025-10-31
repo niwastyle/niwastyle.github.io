@@ -1,1 +1,181 @@
+/* ==== フォント ==== */
+@font-face {
+  font-family: 'YujiMai';
+  src: url('/file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NotoSerifJP-Regular';
+  src: url('/file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NotoSerifJP-Bold';
+  src: url('/file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+}
 
+/* ==== 基本設定 ==== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  color: #000;
+  font-family: 'NotoSerifJP-Regular', serif;
+}
+
+/* ==== 固定ロゴ ==== */
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  font-size: 2.2rem;
+  color: #000; /* 通常時は黒 */
+  z-index: 40;
+  letter-spacing: 0.1em;
+  text-shadow: none;
+  transition: all 0.6s ease;
+  font-family: 'YujiMai', serif;
+  text-decoration: none;
+}
+.logo.menu-open {
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  color: #fff; /* メニュー時は白 */
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* ==== メニューボタン ==== */
+.menu-button {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  font-size: 1.2rem;
+  color: #000;
+  z-index: 50;
+  background: none;
+  border: none;
+  font-family: 'YujiMai', serif;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.menu-button.menu-open {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+/* ==== メニューオーバーレイ ==== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.96);
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==== メニューリンク ==== */
+.menu-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 80px;
+  text-align: center;
+}
+.menu-links a {
+  font-family: 'NotoSerifJP-Bold', serif;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s;
+}
+.menu-links a:hover {
+  opacity: 0.6;
+}
+
+/* ==== NEWSページ ==== */
+main.news {
+  max-width: 900px;
+  margin: 160px auto 100px;
+  padding: 0 20px;
+}
+main.news h1 {
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: 0.05em;
+}
+
+/* ==== NEWSアイテム ==== */
+.news-item {
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #ddd;
+}
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+.news-meta .date {
+  color: #555;
+  font-weight: bold;
+  min-width: 100px;
+}
+
+/* ==== トピックタグ ==== */
+.topic {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  color: #000;
+  font-size: 0.85rem;
+}
+
+/* ---- 各トピックカラー ---- */
+.topic-お知らせ {
+  background: linear-gradient(90deg, #c6a9f5, #f5b8d2);
+}
+.topic-井ノ岡の日常 {
+  background: linear-gradient(90deg, #ffa648, #ffe36d);
+}
+.topic-はじめの日常 {
+  background: linear-gradient(90deg, #a7e88a, #4ed2b6);
+}
+.topic-イベント情報 {
+  background: linear-gradient(90deg, #e85b9c, #f8c2d9);
+}
+.topic-その他 {
+  background: linear-gradient(90deg, #d8d8d8, #9e9e9e);
+}
+
+.news-item h2 {
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+.news-item p {
+  font-family: 'NotoSerifJP-Regular', serif;
+  line-height: 2;
+  white-space: pre-line;
+  font-size: 1rem;
+  color: #333;
+}
