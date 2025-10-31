@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEWS｜庭style</title>
 
+  <style>
+    /* ==== フォント ==== */
+    @font-face {
+      font-family: 'YujiMai';
+      src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'NotoSerifJP-Regular';
+      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'NotoSerifJP-Bold';
+      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+    }
+
+    /* ==== 基本設定 ==== */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #fff;
+      color: #000;
+      font-family: 'NotoSerifJP-Regular', serif;
+    }
+
+    /* ==== 固定ロゴ ==== */
+    .logo {
+      position: fixed;
+      top: 30px;
+      left: 40px;
+      font-size: 2.2rem;
+      color: white;
+      z-index: 40;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: all 0.6s ease;
+      font-family: 'YujiMai', serif;
+    }
+    .logo.menu-open {
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
+    }
+
+    /* ==== メニューボタン ==== */
+    .menu-button {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 1.2rem;
+      color: white;
+      z-index: 50;
+      background: none;
+      border: none;
+      font-family: 'YujiMai', serif;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+      transition: opacity 0.3s ease;
+    }
+
+    /* ==== メニューオーバーレイ ==== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ==== メニューリンク ==== */
+    .menu-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 80px;
+      text-align: center;
+    }
+    .menu-links a {
+      font-family: 'NotoSerifJP-Bold', serif;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s;
+    }
+    .menu-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* ==== NEWSページ ==== */
+    main.news {
+      max-width: 900px;
+      margin: 160px auto 100px;
+      padding: 0 20px;
+    }
+
+    main.news h1 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 60px;
+      letter-spacing: 0.05em;
+    }
+
+    .news-item {
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .news-meta .date {
+      color: #555;
+      font-weight: bold;
+      min-width: 100px;
+    }
+
+    /* ==== トピックタグ（背景グラデーション） ==== */
+    .topic {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      color: white;
+      font-size: 0.85rem;
+    }
+
+    /* ---- 各トピックカラー ---- */
+    .topic-お知らせ {
+      background: linear-gradient(90deg, #c6a9f5, #f5b8d2);
+    }
+    .topic-井ノ岡の日常 {
+      background: linear-gradient(90deg, #ffa648, #ffe36d);
+    }
+    .topic-はじめの日常 {
+      background: linear-gradient(90deg, #a7e88a, #4ed2b6);
+    }
+    .topic-イベント情報 {
+      background: linear-gradient(90deg, #e85b9c, #f8c2d9);
+    }
+    .topic-その他 {
+      background: linear-gradient(90deg, #d8d8d8, #9e9e9e);
+    }
+
+    .news-item h2 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .news-item p {
+      font-family: 'NotoSerifJP-Regular', serif;
+      line-height: 2;
+      white-space: pre-line;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 固定ロゴ -->
+  <div class="logo">庭style</div>
+
+  <!-- メニューボタン -->
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- NEWS内容 -->
+  <main class="news">
+    <h1>NEWS</h1>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="date">2025.10.31</span>
+        <span class="topic topic-その他">その他</span>
+      </div>
+      <h2>神戸文化祭のお知らせ（10/31）</h2>
+      <p>
+今年も神戸文化祭に出展致します。「純粋直感 Zoo」と題して、王子動物園内、動物科学資料館におります。旗みたらお声掛けください。
+
+【フラッガー】井ノ岡里子（日本画家）
+【時】11月3日（月祝） 10：00〜12：00
+【場】神戸市立王子動物園
+【参】入園料600円のみ必要 （市内の高校生以下、65歳以上は無料）
+【問】dficu505@kcc.zaq.ne.jp
+
+お近くまでお越しの際はぜひご参加ください。
+      </p>
+    </article>
+  </main>
+
+  <script>
+    // メニュー開閉
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.querySelector('.logo');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        menuOverlay.classList.add('active');
+        menuBtn.textContent = 'close';
+        logo.classList.add('menu-open');
+      } else {
+        menuOverlay.classList.remove('active');
+        menuBtn.textContent = 'menu';
+        logo.classList.remove('menu-open');
+      }
+    });
+  </script>
+
+</body>
+</html>
