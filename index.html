@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
+  <!-- フォント設定 -->
   <style>
     @font-face {
       font-family: 'YujiMai';
       src: url('/file/font/yuji/YujiMai-Regular.ttf') format('truetype');
-      font-display: swap;
     }
 
     html, body {
@@ -17,45 +17,72 @@
       padding: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
       font-family: 'YujiMai', serif;
+      background-color: #000;
     }
 
-    body {
-      background: url('/file/back.jpg') no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-    }
-
-    /* 白フィルターを薄く重ねる */
-    body::before {
-      content: "";
-      position: absolute;
+    /* 背景スライドショー */
+    .background {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.30); /* 白を30%重ねる */
-      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
 
-    header {
-      position: relative;
-      z-index: 1;
-      padding: 20px 30px;
+    .background.active {
+      opacity: 1;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #222;
-      margin: 0;
+    /* タイトル */
+    .logo {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      font-size: 2.2rem;
+      color: white;
+      z-index: 10;
       letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
-
   </style>
 </head>
 <body>
-  <header>
-    <h1>庭style</h1>
-  </header>
+
+  <!-- タイトル -->
+  <div class="logo">庭style</div>
+
+  <!-- 背景画像 -->
+  <div class="background" style="background-image: url('/file/photo/back/back_1.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_2.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_3.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_4.jpg');"></div>
+
+  <script>
+    const slides = document.querySelectorAll('.background');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    // 初期表示
+    showSlide(current);
+    // 3秒ごとに切り替え
+    setInterval(nextSlide, 3000);
+  </script>
+
 </body>
 </html>
