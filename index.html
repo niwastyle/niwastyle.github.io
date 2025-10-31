@@ -5,43 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
-  <!-- フォント設定 -->
   <style>
+    /* ==== フォント ==== */
     @font-face {
       font-family: 'YujiMai';
-      src: url('/file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+      src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
     }
 
+    @font-face {
+      font-family: 'NotoSerifJP-Regular';
+      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'NotoSerifJP-Bold';
+      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+    }
+
+    /* ==== 基本設定 ==== */
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       font-family: 'YujiMai', serif;
       background-color: #000;
+      color: #000;
     }
 
-    /* 背景スライドショー */
+    /* ==== 背景スライドショー ==== */
     .background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background-size: cover;
       background-position: center;
       opacity: 0;
       transition: opacity 2s ease-in-out;
+      z-index: -1;
     }
 
     .background.active {
       opacity: 1;
     }
 
-    /* タイトル */
+    /* ==== ロゴ（固定表示） ==== */
     .logo {
-      position: absolute;
+      position: fixed;
       top: 30px;
       left: 40px;
       font-size: 2.2rem;
@@ -50,19 +62,60 @@
       letter-spacing: 0.1em;
       text-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
+
+    /* ==== コンテンツ領域 ==== */
+    .content {
+      position: relative;
+      background: #fff;
+      margin-top: 100vh; /* 背景スライドの下から始まる */
+      padding: 120px 20px 160px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+    }
+
+    .content p {
+      font-family: 'NotoSerifJP-Regular', serif;
+      font-size: 1.1rem;
+      line-height: 2;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+
+    .content p strong {
+      display: block;
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1.4rem;
+      margin-top: 25px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- タイトル -->
+  <!-- 固定ロゴ -->
   <div class="logo">庭style</div>
 
-  <!-- 背景画像 -->
-  <div class="background" style="background-image: url('file/photo/back/back_1.jpg');"></div>
+  <!-- 背景スライド -->
+  <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
   <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
 
+  <!-- 白いコンテンツ領域 -->
+  <section class="content">
+    <h1>井ノ岡里子の絵とその空間演出</h1>
+    <p>
+      自然の中で写生して感じとれた感動が少しでも伝わるといいな  
+      <strong>無味即真味</strong>
+    </p>
+  </section>
+
+  <!-- 背景フェードスクリプト -->
   <script>
     const slides = document.querySelectorAll('.background');
     let current = 0;
@@ -80,7 +133,7 @@
 
     // 初期表示
     showSlide(current);
-    // 3秒ごとに切り替え
+    // 6秒ごとに切り替え
     setInterval(nextSlide, 6000);
   </script>
 
