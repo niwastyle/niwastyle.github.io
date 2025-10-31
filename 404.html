@@ -3,154 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>庭style｜井ノ岡里子の絵とその空間演出</title>
-
+  <title>神戸文化祭のお知らせ｜庭style</title>
+  <link rel="stylesheet" href="/news/style.css">
   <style>
-    /* ==== フォント ==== */
-    @font-face {
-      font-family: 'YujiMai';
-      src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'NotoSerifJP-Regular';
-      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'NotoSerifJP-Bold';
-      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
-    }
-
-    /* ==== 基本設定 ==== */
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: 'YujiMai', serif;
-      background-color: #000;
-      color: #000;
-    }
-
-    /* ==== 背景スライド ==== */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-      z-index: -1;
-    }
-    .background.active { opacity: 1; }
-
-    /* ==== 固定ロゴ ==== */
-    .logo {
-      position: fixed;
-      top: 30px;
-      left: 40px;
-      font-size: 2.2rem;
-      color: white;
-      z-index: 40; /* ← 最前面に！ */
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 10px rgba(0,0,0,0.6);
-      transition: all 0.6s ease;
-    }
-    .logo.menu-open {
-      left: 50%;
-      top: 50px;
-      transform: translateX(-50%);
-    }
-
-    /* ==== メニューボタン ==== */
-    .menu-button {
-      position: fixed;
-      top: 30px;
-      right: 40px;
-      font-size: 1.2rem;
-      color: white;
-      z-index: 50;
-      background: none;
-      border: none;
-      font-family: 'YujiMai', serif;
-      letter-spacing: 0.1em;
-      cursor: pointer;
-      text-shadow: 0 0 8px rgba(0,0,0,0.6);
-      transition: opacity 0.3s ease;
-    }
-
-    /* ==== メニューオーバーレイ ==== */
-    .menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.96);
-      color: white;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-      z-index: 30; /* ← ロゴより下 */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* ==== メニューリンク ==== */
-    .menu-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px 80px;
-      text-align: center;
-    }
-    .menu-links a {
-      font-family: 'NotoSerifJP-Bold', serif;
-      text-decoration: none;
-      color: white;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
-      transition: opacity 0.3s;
-    }
-    .menu-links a:hover {
-      opacity: 0.6;
-    }
-
-    /* ==== 白背景コンテンツ ==== */
-    .content {
-      position: relative;
-      background: #fff;
-      margin-top: 100vh;
-      padding: 120px 20px 160px;
-      text-align: center;
-    }
-    .content h1 {
-      font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 2rem;
-      margin-bottom: 40px;
-      letter-spacing: 0.05em;
-    }
-    .content p {
-      font-family: 'NotoSerifJP-Regular', serif;
-      font-size: 1.1rem;
-      line-height: 2;
-      margin: 0 auto;
-      max-width: 700px;
-    }
-    .content p strong {
-      display: block;
-      font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 1.4rem;
-      margin-top: 25px;
-    }
-
     /* ==== フッター ==== */
     footer {
       background: #fff;
@@ -165,8 +20,8 @@
 </head>
 <body>
 
-  <!-- 固定ロゴ -->
-  <div class="logo">庭style</div>
+  <!-- 固定ロゴ（リンク付き） -->
+  <a href="/" class="logo" id="logo">庭style</a>
 
   <!-- メニューボタン -->
   <button class="menu-button" id="menuBtn">menu</button>
@@ -183,20 +38,30 @@
     </div>
   </div>
 
-  <!-- 背景スライド -->
-  <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
+  <!-- NEWS内容 -->
+  <main class="news">
+    <h1>NEWS</h1>
 
-  <!-- 白いコンテンツ -->
-  <section class="content">
-    <h1>井ノ岡里子の絵とその空間演出</h1>
-    <p>
-      自然の中で写生して感じとれた感動が少しでも伝わるといいな  
-      <strong>無味即真味</strong>
-    </p>
-  </section>
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="date">2025.10.31</span>
+        <span class="topic topic-イベント情報">イベント情報</span>
+      </div>
+      <h2>神戸文化祭のお知らせ（10/31）</h2>
+      <p>
+今年も神戸文化祭に出展致します。「純粋直感 Zoo」と題して、王子動物園内、動物科学資料館におります。旗をみたらお声掛けください。<br><br>
+
+【フラッガー】井ノ岡里子（日本画家）<br>
+【時】11月3日（月祝） 10：00〜12：00<br>
+【場】神戸市立王子動物園<br>
+【参】入園料600円のみ必要 （市内の高校生以下、65歳以上は無料）<br>
+【問】dficu505@kcc.zaq.ne.jp<br>
+【アシスタント】本谷はじめ（高校生）<br><br>
+
+お近くまでお越しの際はぜひご参加ください。
+      </p>
+    </article>
+  </main>
 
   <!-- フッター -->
   <footer>
@@ -204,22 +69,10 @@
   </footer>
 
   <script>
-    // 背景フェード
-    const slides = document.querySelectorAll('.background');
-    let current = 0;
-    function showSlide(index) {
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    }
-    function nextSlide() {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }
-    setInterval(nextSlide, 6000);
-
     // メニュー開閉
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
-    const logo = document.querySelector('.logo');
+    const logo = document.getElementById('logo');
     let menuOpen = false;
 
     menuBtn.addEventListener('click', () => {
@@ -227,10 +80,12 @@
       if (menuOpen) {
         menuOverlay.classList.add('active');
         menuBtn.textContent = 'close';
+        menuBtn.classList.add('menu-open');
         logo.classList.add('menu-open');
       } else {
         menuOverlay.classList.remove('active');
         menuBtn.textContent = 'menu';
+        menuBtn.classList.remove('menu-open');
         logo.classList.remove('menu-open');
       }
     });
