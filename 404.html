@@ -3,14 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>庭style｜井ノ岡里子の絵とその空間演出</title>
+  <title>NEWS｜庭style</title>
 
   <style>
     /* ==== フォント ==== */
-    @font-face {
-      font-family: 'YujiMai';
-      src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
-    }
     @font-face {
       font-family: 'NotoSerifJP-Regular';
       src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
@@ -25,26 +21,11 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
-      font-family: 'YujiMai', serif;
-      background-color: #000;
-      color: #000;
+      min-height: 100vh;
+      font-family: 'NotoSerifJP-Regular', serif;
+      background-color: #fff;
+      color: #222;
     }
-
-    /* ==== 背景スライド ==== */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-      z-index: -1;
-    }
-    .background.active { opacity: 1; }
 
     /* ==== 固定ロゴ ==== */
     .logo {
@@ -52,16 +33,11 @@
       top: 30px;
       left: 40px;
       font-size: 2.2rem;
-      color: white;
-      z-index: 20;
+      color: black;
+      z-index: 40;
       letter-spacing: 0.1em;
-      text-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: all 0.6s ease;
-    }
-    .logo.menu-open {
-      left: 50%;
-      top: 50px;
-      transform: translateX(-50%);
+      font-family: 'NotoSerifJP-Bold', serif;
     }
 
     /* ==== メニューボタン ==== */
@@ -70,85 +46,57 @@
       top: 30px;
       right: 40px;
       font-size: 1.2rem;
-      color: white;
-      z-index: 30;
+      color: black;
+      z-index: 50;
       background: none;
       border: none;
-      font-family: 'YujiMai', serif;
+      font-family: 'NotoSerifJP-Regular', serif;
       letter-spacing: 0.1em;
       cursor: pointer;
-      text-shadow: 0 0 8px rgba(0,0,0,0.6);
       transition: opacity 0.3s ease;
     }
 
-    /* ==== メニューオーバーレイ ==== */
-    .menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.96);
-      color: white;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-      z-index: 25;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* ==== メニューリンク ==== */
-    .menu-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px 80px;
-      text-align: center;
-    }
-    .menu-links a {
-      font-family: 'NotoSerifJP-Bold', serif;
-      text-decoration: none;
-      color: white;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
-      transition: opacity 0.3s;
-    }
-    .menu-links a:hover {
-      opacity: 0.6;
-    }
-
-    /* ==== 白背景コンテンツ ==== */
+    /* ==== コンテンツ ==== */
     .content {
-      position: relative;
-      background: #fff;
-      margin-top: 100vh;
-      padding: 120px 20px 160px;
-      text-align: center;
+      max-width: 800px;
+      margin: 160px auto 100px;
+      padding: 0 20px;
     }
+
     .content h1 {
       font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 2rem;
-      margin-bottom: 40px;
+      font-size: 2.2rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    /* ==== トピックボックス ==== */
+    .topic {
+      background: linear-gradient(135deg, #dcd0ff 0%, #f8d3e5 100%);
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .topic-date {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #555;
       letter-spacing: 0.05em;
     }
-    .content p {
-      font-family: 'NotoSerifJP-Regular', serif;
-      font-size: 1.1rem;
-      line-height: 2;
-      margin: 0 auto;
-      max-width: 700px;
-    }
-    .content p strong {
-      display: block;
+
+    .topic-title {
       font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 1.4rem;
-      margin-top: 25px;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .topic-body {
+      line-height: 1.9;
+      font-size: 1.05rem;
+      white-space: pre-line;
     }
   </style>
 </head>
@@ -160,65 +108,26 @@
   <!-- メニューボタン -->
   <button class="menu-button" id="menuBtn">menu</button>
 
-  <!-- メニューオーバーレイ -->
-  <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-links">
-      <a href="/about">ABOUT</a>
-      <a href="/profile">PROFILE</a>
-      <a href="/news">NEWS</a>
-      <a href="/topics">TOPICS</a>
-      <a href="/instagram">INSTAGRAM</a>
-      <a href="/contact">CONTACT</a>
-    </div>
-  </div>
-
-  <!-- 背景スライド -->
-  <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
-
-  <!-- 白いコンテンツ -->
+  <!-- コンテンツ -->
   <section class="content">
-    <h1>井ノ岡里子の絵とその空間演出</h1>
-    <p>
-      自然の中で写生して感じとれた感動が少しでも伝わるといいな  
-      <strong>無味即真味</strong>
-    </p>
+    <h1>NEWS</h1>
+
+    <div class="topic">
+      <div class="topic-date">2025.10.31</div>
+      <div class="topic-title">神戸文化祭のお知らせ（10/31）</div>
+      <div class="topic-body">
+今年も神戸文化祭に出展致します。「純粋直感 Zoo」と題して、王子動物園内、動物科学資料館におります。旗みたらお声掛けください。
+
+【フラッガー】井ノ岡里子（日本画家）  
+【時】11月3日（月祝） 10：00〜12：00  
+【場】神戸市立王子動物園  
+【参】入園料600円のみ必要 （市内の高校生以下、65歳以上は無料）  
+【問】dficu505@kcc.zaq.ne.jp  
+
+お近くまでお越しの際はぜひご参加ください。
+      </div>
+    </div>
   </section>
-
-  <script>
-    // 背景フェード
-    const slides = document.querySelectorAll('.background');
-    let current = 0;
-    function showSlide(index) {
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-    }
-    function nextSlide() {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }
-    setInterval(nextSlide, 6000);
-
-    // メニュー開閉
-    const menuBtn = document.getElementById('menuBtn');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const logo = document.querySelector('.logo');
-    let menuOpen = false;
-
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      if (menuOpen) {
-        menuOverlay.classList.add('active');
-        menuBtn.textContent = 'close';
-        logo.classList.add('menu-open');
-      } else {
-        menuOverlay.classList.remove('active');
-        menuBtn.textContent = 'menu';
-        logo.classList.remove('menu-open');
-      }
-    });
-  </script>
 
 </body>
 </html>
