@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
+  <style>
+    /* ==== フォント ==== */
+    @font-face {
+      font-family: 'YujiMai';
+      src: url('file/font/yuji/YujiMai-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'NotoSerifJP-Regular';
+      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'NotoSerifJP-Bold';
+      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+    }
+
+    /* ==== 基本設定 ==== */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'YujiMai', serif;
+      background-color: #000;
+      color: #000;
+    }
+
+    /* ==== 背景スライド ==== */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      z-index: -1;
+    }
+    .background.active { opacity: 1; }
+
+    /* ==== 固定ロゴ ==== */
+    .logo {
+      position: fixed;
+      top: 30px;
+      left: 40px;
+      font-size: 2.2rem;
+      color: white;
+      z-index: 20;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: all 0.6s ease;
+    }
+    .logo.menu-open {
+      left: 50%;
+      top: 50px;
+      transform: translateX(-50%);
+    }
+
+    /* ==== メニューボタン ==== */
+    .menu-button {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 1.2rem;
+      color: white;
+      z-index: 30;
+      background: none;
+      border: none;
+      font-family: 'YujiMai', serif;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+      transition: opacity 0.3s ease;
+    }
+
+    /* ==== メニューオーバーレイ ==== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.96);
+      color: white;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 25;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ==== メニューリンク ==== */
+    .menu-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 80px;
+      text-align: center;
+    }
+    .menu-links a {
+      font-family: 'NotoSerifJP-Bold', serif;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s;
+    }
+    .menu-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* ==== 白背景コンテンツ ==== */
+    .content {
+      position: relative;
+      background: #fff;
+      margin-top: 100vh;
+      padding: 120px 20px 160px;
+      text-align: center;
+    }
+    .content h1 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+    }
+    .content p {
+      font-family: 'NotoSerifJP-Regular', serif;
+      font-size: 1.1rem;
+      line-height: 2;
+      margin: 0 auto;
+      max-width: 700px;
+    }
+    .content p strong {
+      display: block;
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1.4rem;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 固定ロゴ -->
+  <div class="logo">庭style</div>
+
+  <!-- メニューボタン -->
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- 背景スライド -->
+  <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
+  <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
+  <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
+  <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
+
+  <!-- 白いコンテンツ -->
+  <section class="content">
+    <h1>井ノ岡里子の絵とその空間演出</h1>
+    <p>
+      自然の中で写生して感じとれた感動が少しでも伝わるといいな  
+      <strong>無味即真味</strong>
+    </p>
+  </section>
+
+  <script>
+    // 背景フェード
+    const slides = document.querySelectorAll('.background');
+    let current = 0;
+    function showSlide(index) {
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    setInterval(nextSlide, 6000);
+
+    // メニュー開閉
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.querySelector('.logo');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        menuOverlay.classList.add('active');
+        menuBtn.textContent = 'close';
+        logo.classList.add('menu-open');
+      } else {
+        menuOverlay.classList.remove('active');
+        menuBtn.textContent = 'menu';
+        logo.classList.remove('menu-open');
+      }
+    });
+  </script>
+
+</body>
+</html>
