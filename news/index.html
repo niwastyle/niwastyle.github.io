@@ -4,8 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEWS｜庭style</title>
+
+  <!-- ==== ファビコン / アイコン ==== -->
+  <link rel="icon" type="image/jpeg" href="/file/icon.jpg">
+  <link rel="apple-touch-icon" href="/file/icon.jpg">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- ==== OGP設定 ==== -->
+  <meta property="og:title" content="NEWS｜庭style">
+  <meta property="og:description" content="庭styleの最新ニュース・イベント情報をお届けします。">
+  <meta property="og:image" content="/file/icon.jpg">
+  <meta property="og:url" content="https://niwastyle.github.io/news">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="庭style">
+
+  <!-- ==== Twitterカード ==== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NEWS｜庭style">
+  <meta name="twitter:description" content="庭styleの最新ニュース・イベント情報をお届けします。">
+  <meta name="twitter:image" content="/file/icon.jpg">
+
+  <!-- ==== フォント ==== -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- ==== 外部CSS ==== -->
   <link rel="stylesheet" href="/news/style.css">
+
   <style>
+    body {
+      font-family: 'Noto Serif JP', serif;
+    }
+
     /* ==== 検索バー ==== */
     .search-bar {
       text-align: center;
@@ -18,7 +47,7 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'Noto Serif JP', serif;
     }
 
     /* ==== トピック一覧 ==== */
@@ -33,17 +62,18 @@
       padding: 6px 14px;
       border: none;
       border-radius: 4px;
-      font-family: 'NotoSerifJP-Bold', serif;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
       font-size: 0.9rem;
       cursor: pointer;
       transition: opacity 0.3s;
-      color: #000; /* ← トピック文字色を黒に */
+      color: #000;
     }
     .topic-filters button:hover {
       opacity: 0.7;
     }
 
-    /* トピックカラーを再利用 */
+    /* トピックカラー */
     .filter-お知らせ { background: linear-gradient(90deg, #c6a9f5, #f5b8d2); }
     .filter-井ノ岡の日常 { background: linear-gradient(90deg, #ffa648, #ffe36d); }
     .filter-はじめの日常 { background: linear-gradient(90deg, #a7e88a, #4ed2b6); }
@@ -62,7 +92,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       padding: 6px 12px;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'Noto Serif JP', serif;
       cursor: pointer;
       color: #000;
       transition: all 0.3s;
@@ -82,7 +112,7 @@
       font-size: 0.9rem;
       padding: 40px 0 30px;
       color: #333;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'Noto Serif JP', serif;
       border-top: 1px solid #ddd;
       margin-top: 60px;
     }
@@ -140,7 +170,6 @@
   </footer>
 
   <script>
-    // ==== ニュースデータ ====
     const newsData = [
       { date: '2025.10.31', topic: 'イベント情報', title: '個展のお知らせ', url: '/news/2025103102' },
       { date: '2025.10.31', topic: 'イベント情報', title: '神戸文化祭のお知らせ', url: '/news/2025103101' },
@@ -182,7 +211,7 @@
         <article class="news-item">
           <div class="news-meta">
             <span class="date">${item.date}</span>
-            <span class="topic topic-${item.topic}" style="color:#000;">${item.topic}</span>
+            <span class="topic" style="color:#000;">${item.topic}</span>
           </div>
           <h2><a href="${item.url}" style="text-decoration:none;color:#000;">${item.title}</a></h2>
         </article>
@@ -201,14 +230,12 @@
       }
     }
 
-    // 検索
     searchInput.addEventListener('input', e => {
       currentSearch = e.target.value;
       currentPage = 1;
       renderNews();
     });
 
-    // トピックフィルター
     topicButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         currentTopic = btn.dataset.topic;
@@ -219,7 +246,6 @@
 
     renderNews();
 
-    // ==== メニュー開閉 ====
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const logo = document.getElementById('logo');
