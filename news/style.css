@@ -83,23 +83,32 @@ html, body {
   visibility: visible;
 }
 
-/* ==== メニューリンク ==== */
+/* ==== メニューリンク（ボタン風） ==== */
 .menu-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px 80px;
   text-align: center;
 }
+
 .menu-links a {
   font-family: 'NotoSerifJP-Bold', serif;
   text-decoration: none;
-  color: white;
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
-  transition: opacity 0.3s;
+  color: #fff;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 32px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  display: inline-block;
 }
+
 .menu-links a:hover {
-  opacity: 0.6;
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
 }
 
 /* ==== NEWSページ ==== */
@@ -163,4 +172,16 @@ main.news h1 {
   white-space: pre-line;
   font-size: 1rem;
   color: #333;
+}
+
+/* ==== フッター ==== */
+footer {
+  background: #fff;
+  text-align: center;
+  padding: 40px 0 60px;
+  font-family: 'NotoSerifJP-Regular', serif;
+  font-size: 0.9rem;
+  color: #555;
+  letter-spacing: 0.05em;
+  border-top: 1px solid #eee;
 }
