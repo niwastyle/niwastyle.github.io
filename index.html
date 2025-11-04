@@ -5,27 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
-  <!-- ===== サイト名・ブランド強調 ===== -->
-  <meta name="application-name" content="庭style">
-  <meta property="og:site_name" content="庭style">
-  <meta name="author" content="庭style">
-
-  <!-- ===== SEO・SNS対策 ===== -->
-  <meta name="description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
-  <meta property="og:title" content="庭style｜井ノ岡里子の絵とその空間演出">
-  <meta property="og:description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。">
-  <meta property="og:image" content="https://niwastyle.github.io/file/icon.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://niwastyle.github.io/">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- ===== ファビコン & 各デバイスアイコン ===== -->
+  <!-- ==== ファビコン & アイコン統一 ==== -->
   <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="/file/icon.jpg">
   <link rel="shortcut icon" href="/file/icon.jpg" type="image/jpeg">
-  <link rel="manifest" href="/manifest.json">
 
-  <!-- ===== フォント設定 ===== -->
+  <!-- ==== OGP設定 ==== -->
+  <meta property="og:title" content="庭style｜井ノ岡里子の絵とその空間演出">
+  <meta property="og:description" content="自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
+  <meta property="og:image" content="https://niwastyle.github.io/file/icon.jpg">
+  <meta property="og:url" content="https://niwastyle.github.io/">
+  <meta property="og:site_name" content="庭style">
+  <meta property="og:type" content="website">
+
+  <!-- ==== ブランド強調・検索向け ==== -->
+  <meta name="application-name" content="庭style">
+  <meta name="author" content="庭style">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。">
+
+  <!-- ==== フォント ==== -->
   <style>
     @font-face {
       font-family: 'NotoSerifJP-Regular';
@@ -36,7 +35,6 @@
       src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
     }
 
-    /* ==== 基本設定 ==== */
     html, body {
       margin: 0;
       padding: 0;
@@ -91,7 +89,7 @@
       z-index: 50;
       background: none;
       border: none;
-      font-family: 'NotoSerifJP-Regular', serif;
+      font-family: 'NotoSerifJP-Bold', serif;
       letter-spacing: 0.1em;
       cursor: pointer;
       text-shadow: 0 0 8px rgba(0,0,0,0.6);
@@ -180,8 +178,8 @@
     }
   </style>
 </head>
-
 <body>
+
   <!-- 固定ロゴ -->
   <div class="logo">庭style</div>
 
@@ -215,12 +213,12 @@
     </p>
   </section>
 
-  <!-- フッター -->
+  <!-- フッター（全ページ共通コピーライト） -->
   <footer>
     © Copyright Niwa Style All Rights Reserved.
   </footer>
 
-  <!-- ===== JS ===== -->
+  <!-- ==== スクリプト ==== -->
   <script>
     // 背景フェード
     const slides = document.querySelectorAll('.background');
@@ -253,5 +251,6 @@
       }
     });
   </script>
+
 </body>
 </html>
