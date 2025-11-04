@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページが見つかりません｜庭style</title>
 
+  <!-- 5秒後に自動リダイレクト -->
+  <meta http-equiv="refresh" content="5; URL=https://niwastyle.github.io">
+
+  <style>
+    body {
+      font-family: "Noto Serif JP", serif;
+      background-color: #f9f9f9;
+      color: #333;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1em;
+      margin-bottom: 30px;
+    }
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>お探しのページは見つかりませんでした。</h1>
+  <p>5秒後にトップページへ戻ります。</p>
+  <a href="https://niwastyle.github.io">今すぐ戻る</a>
+
+  <script>
+    // 念のため、JavaScriptでもリダイレクト（確実に動作）
+    setTimeout(function() {
+      window.location.href = "https://niwastyle.github.io";
+    }, 5000);
+  </script>
+</body>
+</html>
