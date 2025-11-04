@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
-  <!-- ==== ファビコン & アイコン統一 ==== -->
+  <!-- ファビコン & Apple アイコン（共通で file/icon.jpg を使用） -->
   <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="/file/icon.jpg">
   <link rel="shortcut icon" href="/file/icon.jpg" type="image/jpeg">
 
-  <!-- ==== OGP設定 ==== -->
+  <!-- OGP -->
   <meta property="og:title" content="庭style｜井ノ岡里子の絵とその空間演出">
   <meta property="og:description" content="自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
   <meta property="og:image" content="https://niwastyle.github.io/file/icon.jpg">
@@ -18,34 +18,44 @@
   <meta property="og:site_name" content="庭style">
   <meta property="og:type" content="website">
 
-  <!-- ==== ブランド強調・検索向け ==== -->
+  <!-- ブランド強調 -->
   <meta name="application-name" content="庭style">
   <meta name="author" content="庭style">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。">
 
-  <!-- ==== フォント ==== -->
+  <!-- フォント（Yuji を外してすべて Noto 系に統一） -->
   <style>
     @font-face {
       font-family: 'NotoSerifJP-Regular';
-      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+      src: url('/file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'NotoSerifJP-Bold';
-      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+      src: url('/file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
 
-    html, body {
+    /* html に黒背景（フェイルセーフ） / body は透明にして fixed 背景が見えるように */
+    html { background: #000; }
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       font-family: 'NotoSerifJP-Regular', serif;
-      background-color: #000;
+      background: transparent;
       color: #000;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ==== 背景スライド ==== */
+    /* 背景スライド（前面に配置） */
     .background {
       position: fixed;
       top: 0;
@@ -56,18 +66,19 @@
       background-position: center;
       opacity: 0;
       transition: opacity 2s ease-in-out;
-      z-index: -1;
+      z-index: 0; /* ← ここを -1 から 0 に変更 */
+      pointer-events: none;
     }
     .background.active { opacity: 1; }
 
-    /* ==== 固定ロゴ ==== */
+    /* 固定ロゴ（メニューより下にしたい場合は z-index 調整可） */
     .logo {
       position: fixed;
       top: 30px;
       left: 40px;
       font-size: 2.2rem;
       color: white;
-      z-index: 40;
+      z-index: 40; /* ロゴをメニューより上に表示したければ 60 等に */
       letter-spacing: 0.1em;
       text-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: all 0.6s ease;
@@ -79,7 +90,7 @@
       transform: translateX(-50%);
     }
 
-    /* ==== メニューボタン ==== */
+    /* メニューボタン */
     .menu-button {
       position: fixed;
       top: 30px;
@@ -96,35 +107,39 @@
       transition: opacity 0.3s ease;
     }
 
-    /* ==== メニューオーバーレイ ==== */
+    /* メニューオーバーレイ */
     .menu-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.96);
+      /* 半透明にして「背景が暗くなる」効果を出す */
+      background: rgba(0,0,0,0.88);
       color: white;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
       z-index: 30;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      pointer-events: none; /* 非表示時に背面に干渉しない */
     }
     .menu-overlay.active {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto; /* 有効にする */
     }
 
-    /* ==== メニューリンク ==== */
+    /* メニューリンク */
     .menu-links {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 25px 80px;
       text-align: center;
+      padding: 20px;
     }
     .menu-links a {
       font-family: 'NotoSerifJP-Bold', serif;
@@ -134,17 +149,16 @@
       letter-spacing: 0.05em;
       transition: opacity 0.3s;
     }
-    .menu-links a:hover {
-      opacity: 0.6;
-    }
+    .menu-links a:hover { opacity: 0.6; }
 
-    /* ==== 白背景コンテンツ ==== */
+    /* 白背景コンテンツ（スライドの下に来る） */
     .content {
       position: relative;
       background: #fff;
       margin-top: 100vh;
       padding: 120px 20px 160px;
       text-align: center;
+      z-index: 20; /* コンテンツは背景より上 */
     }
     .content h1 {
       font-family: 'NotoSerifJP-Bold', serif;
@@ -166,7 +180,7 @@
       margin-top: 25px;
     }
 
-    /* ==== フッター ==== */
+    /* フッター（全ページ共通コピーライト） */
     footer {
       background: #fff;
       text-align: center;
@@ -175,6 +189,15 @@
       font-size: 0.9rem;
       color: #555;
       letter-spacing: 0.05em;
+      z-index: 20;
+      position: relative;
+    }
+
+    /* 小さな画面向け微調整 */
+    @media (max-width: 600px) {
+      .menu-links { grid-template-columns: 1fr; gap: 18px; }
+      .logo { left: 20px; top: 20px; font-size: 1.6rem; }
+      .menu-button { right: 20px; top: 20px; }
     }
   </style>
 </head>
@@ -184,25 +207,25 @@
   <div class="logo">庭style</div>
 
   <!-- メニューボタン -->
-  <button class="menu-button" id="menuBtn">menu</button>
+  <button class="menu-button" id="menuBtn" aria-expanded="false" aria-controls="menuOverlay">menu</button>
 
   <!-- メニューオーバーレイ -->
-  <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-links">
-      <a href="/about">ABOUT</a>
-      <a href="/profile">PROFILE</a>
-      <a href="/news">NEWS</a>
-      <a href="/topics">TOPICS</a>
-      <a href="/instagram">INSTAGRAM</a>
-      <a href="/contact">CONTACT</a>
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <div class="menu-links" role="menu">
+      <a href="/about" role="menuitem">ABOUT</a>
+      <a href="/profile" role="menuitem">PROFILE</a>
+      <a href="/news" role="menuitem">NEWS</a>
+      <a href="/topics" role="menuitem">TOPICS</a>
+      <a href="/instagram" role="menuitem">INSTAGRAM</a>
+      <a href="/contact" role="menuitem">CONTACT</a>
     </div>
   </div>
 
-  <!-- 背景スライド -->
-  <div class="background active" style="background-image: url('file/photo/back/back_1.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_2.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_3.jpg');"></div>
-  <div class="background" style="background-image: url('file/photo/back/back_4.jpg');"></div>
+  <!-- 背景スライド（z-index:0 で body より上に表示される） -->
+  <div class="background active" style="background-image: url('/file/photo/back/back_1.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_2.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_3.jpg');"></div>
+  <div class="background" style="background-image: url('/file/photo/back/back_4.jpg');"></div>
 
   <!-- 白いコンテンツ -->
   <section class="content">
@@ -218,7 +241,6 @@
     © Copyright Niwa Style All Rights Reserved.
   </footer>
 
-  <!-- ==== スクリプト ==== -->
   <script>
     // 背景フェード
     const slides = document.querySelectorAll('.background');
@@ -230,7 +252,8 @@
       current = (current + 1) % slides.length;
       showSlide(current);
     }
-    setInterval(nextSlide, 5000);
+    // スライド開始（ページ表示後に動かす）
+    let slideTimer = setInterval(nextSlide, 5000);
 
     // メニュー開閉
     const menuBtn = document.getElementById('menuBtn');
@@ -238,19 +261,37 @@
     const logo = document.querySelector('.logo');
     let menuOpen = false;
 
+    function openMenu() {
+      menuOpen = true;
+      menuOverlay.classList.add('active');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      menuBtn.textContent = 'close';
+      menuBtn.setAttribute('aria-expanded', 'true');
+      logo.classList.add('menu-open');
+      // スライドは止めずに動かしたいならコメントアウト： clearInterval(slideTimer);
+    }
+    function closeMenu() {
+      menuOpen = false;
+      menuOverlay.classList.remove('active');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      menuBtn.textContent = 'menu';
+      menuBtn.setAttribute('aria-expanded', 'false');
+      logo.classList.remove('menu-open');
+    }
+
     menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      if (menuOpen) {
-        menuOverlay.classList.add('active');
-        menuBtn.textContent = 'close';
-        logo.classList.add('menu-open');
-      } else {
-        menuOverlay.classList.remove('active');
-        menuBtn.textContent = 'menu';
-        logo.classList.remove('menu-open');
-      }
+      if (menuOpen) closeMenu(); else openMenu();
+    });
+
+    // ESC キーで閉じる挙動
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) closeMenu();
+    });
+
+    // メニュー外クリックで閉じる（overlayが半透明なので閉じられるように）
+    menuOverlay.addEventListener('click', (e) => {
+      if (e.target === menuOverlay) closeMenu();
     });
   </script>
-
 </body>
 </html>
