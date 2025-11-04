@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROFILE｜庭style</title>
 
+  <!-- favicon / OGP -->
+  <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/file/icon.jpg">
+  <meta property="og:title" content="PROFILE｜庭style">
+  <meta property="og:description" content="庭style主宰・井ノ岡里子とアシスタント本谷はじめのプロフィール紹介。">
+  <meta property="og:image" content="/file/icon.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://niwastyle.github.io/profile">
+
+  <link rel="stylesheet" href="/news/style.css">
+
+  <style>
+    main.profile {
+      max-width: 900px;
+      margin: 160px auto 100px;
+      padding: 0 20px;
+    }
+    main.profile h1 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 80px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==== プロフィールブロック ==== */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+    .profile-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      margin-bottom: 25px;
+    }
+    .profile-card h2 {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .profile-card .en-name {
+      font-family: 'NotoSerifJP-Regular', serif;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .profile-card .role {
+      font-family: 'NotoSerifJP-Bold', serif;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      letter-spacing: 0.05em;
+      color: #444;
+    }
+    .profile-card p {
+      font-family: 'NotoSerifJP-Regular', serif;
+      line-height: 2;
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 25px;
+      max-width: 700px;
+    }
+
+    /* ==== 詳細ボタン ==== */
+    .profile-card a {
+      display: inline-block;
+      font-family: 'NotoSerifJP-Bold', serif;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1.5px solid #333;
+      background: transparent;
+      color: #333;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+    }
+    .profile-card a:hover {
+      background: #333;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* ==== スマホ対応 ==== */
+    @media (max-width: 600px) {
+      .profile-card img {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 固定ロゴ -->
+  <a href="/" class="logo" id="logo">庭style</a>
+
+  <!-- メニューボタン -->
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <!-- メニューオーバーレイ -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- PROFILE本体 -->
+  <main class="profile">
+    <h1>PROFILE</h1>
+
+    <!-- 井ノ岡里子 -->
+    <section class="profile-card">
+      <img src="/file/photo/inooka.jpg" alt="井ノ岡里子の写真">
+      <h2>井ノ岡 里子</h2>
+      <div class="en-name">Satoko INOOKA</div>
+      <div class="role">庭style主宰 / 日本画家</div>
+      <p>
+        京都芸術大学卒業。<br>
+        元KOBE STUDIO Y3 正会員。<br>
+        現在は中学・高校の美術科教員として勤務しながら、庭styleとしての創作活動を続けている。<br>
+        庭をテーマにした日本画やインスタレーション作品など、日常の中に息づく静かな感性を表現している。
+      </p>
+      <a href="/profile/inooka">井ノ岡里子ページへ</a>
+    </section>
+
+    <!-- 本谷はじめ -->
+    <section class="profile-card">
+      <img src="/file/photo/hontani.jpg" alt="本谷はじめの写真" onerror="this.style.display='none'">
+      <h2>本谷 はじめ</h2>
+      <div class="en-name">Hajime HONTANI</div>
+      <div class="role">アシスタント / 高校生</div>
+      <p>
+        庭styleのアシスタントとして活動中。<br>
+        絵画やデザイン、SNS運用など、様々な分野に意欲的に取り組む高校生。<br>
+        「井ノ岡先生のもとで、日々学びながら成長しています。」<br>
+        これからの活躍にご期待ください。
+      </p>
+      <a href="/profile/hontani">本谷はじめページへ</a>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    © Copyright Niwa Style All Rights Reserved.
+  </footer>
+
+  <script>
+    // ==== メニュー開閉 ====
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.getElementById('logo');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuOverlay.classList.toggle('active', menuOpen);
+      menuBtn.textContent = menuOpen ? 'close' : 'menu';
+      menuBtn.classList.toggle('menu-open', menuOpen);
+      logo.classList.toggle('menu-open', menuOpen);
+    });
+  </script>
+
+</body>
+</html>
