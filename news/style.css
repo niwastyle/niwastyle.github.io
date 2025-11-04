@@ -83,33 +83,23 @@ html, body {
   visibility: visible;
 }
 
-/* ==== メニューリンク ==== */
+/* ==== メニューリンク （**元のまま**。ここは変更していません） ==== */
 .menu-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px 80px;
   text-align: center;
 }
-
 .menu-links a {
-  display: inline-block;
   font-family: 'NotoSerifJP-Bold', serif;
   text-decoration: none;
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   letter-spacing: 0.05em;
-  padding: 12px 32px;
-  border: 2px solid #fff;
-  border-radius: 40px;
-  transition: all 0.3s ease;
-  background: transparent;
+  transition: opacity 0.3s;
 }
-
 .menu-links a:hover {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 0 10px rgba(255,255,255,0.6);
-  transform: scale(1.05);
+  opacity: 0.6;
 }
 
 /* ==== NEWSページ ==== */
@@ -173,6 +163,69 @@ main.news h1 {
   white-space: pre-line;
   font-size: 1rem;
   color: #333;
+}
+
+/* ==== 記事内リンク（例：エンギャラリー告知ページ等）をボタン風にする ==== */
+/* ※ メニューの .menu-links a とはセレクタが別なので干渉しません */
+.gallery-info a,
+.news-item a,
+main.news a {
+  display: inline-block;
+  font-family: 'NotoSerifJP-Bold', serif;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 30px;
+  border: 1.5px solid #333;
+  background: transparent;
+  color: #333;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  transition: all 0.22s ease;
+  margin-top: 8px;
+}
+
+/* ボタン風のホバー挙動 */
+.gallery-info a:hover,
+.news-item a:hover,
+main.news a:hover {
+  background: #333;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+
+/* 小さいアイコンや外部リンクを示したい場合のマージン調整 */
+.gallery-info a + a,
+.news-item a + a {
+  margin-left: 8px;
+}
+
+/* ==== 画像やマップのスタイル（記事内） ==== */
+.gallery-info img {
+  margin-top: 1em;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Googleマップのレスポンシブ対応（記事内） */
+.map-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin-top: 1.5em;
+  border-radius: 8px;
+}
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ==== フッター ==== */
