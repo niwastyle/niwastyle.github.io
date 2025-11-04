@@ -5,36 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEWS｜庭style</title>
 
-  <!-- ==== ファビコン / アイコン ==== -->
-  <link rel="icon" type="image/jpeg" href="/file/icon.jpg">
+  <!-- favicon / Appleアイコン / OGP設定 -->
+  <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="/file/icon.jpg">
-  <meta name="theme-color" content="#ffffff">
-
-  <!-- ==== OGP設定 ==== -->
   <meta property="og:title" content="NEWS｜庭style">
-  <meta property="og:description" content="庭styleの最新ニュース・イベント情報をお届けします。">
+  <meta property="og:description" content="庭styleの最新ニュースとお知らせ。">
   <meta property="og:image" content="/file/icon.jpg">
-  <meta property="og:url" content="https://niwastyle.github.io/news">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="庭style">
+  <meta property="og:url" content="https://niwastyle.github.io/news">
 
-  <!-- ==== Twitterカード ==== -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NEWS｜庭style">
-  <meta name="twitter:description" content="庭styleの最新ニュース・イベント情報をお届けします。">
-  <meta name="twitter:image" content="/file/icon.jpg">
-
-  <!-- ==== フォント ==== -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- ==== 外部CSS ==== -->
   <link rel="stylesheet" href="/news/style.css">
 
   <style>
-    body {
-      font-family: 'Noto Serif JP', serif;
-    }
-
     /* ==== 検索バー ==== */
     .search-bar {
       text-align: center;
@@ -47,7 +29,7 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'NotoSerifJP-Regular', serif;
     }
 
     /* ==== トピック一覧 ==== */
@@ -62,8 +44,7 @@
       padding: 6px 14px;
       border: none;
       border-radius: 4px;
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 700;
+      font-family: 'NotoSerifJP-Bold', serif;
       font-size: 0.9rem;
       cursor: pointer;
       transition: opacity 0.3s;
@@ -92,7 +73,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       padding: 6px 12px;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'NotoSerifJP-Regular', serif;
       cursor: pointer;
       color: #000;
       transition: all 0.3s;
@@ -112,7 +93,7 @@
       font-size: 0.9rem;
       padding: 40px 0 30px;
       color: #333;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'NotoSerifJP-Regular', serif;
       border-top: 1px solid #ddd;
       margin-top: 60px;
     }
@@ -170,6 +151,7 @@
   </footer>
 
   <script>
+    // ==== ニュースデータ ====
     const newsData = [
       { date: '2025.10.31', topic: 'イベント情報', title: '個展のお知らせ', url: '/news/2025103102' },
       { date: '2025.10.31', topic: 'イベント情報', title: '神戸文化祭のお知らせ', url: '/news/2025103101' },
@@ -211,7 +193,7 @@
         <article class="news-item">
           <div class="news-meta">
             <span class="date">${item.date}</span>
-            <span class="topic" style="color:#000;">${item.topic}</span>
+            <span class="topic topic-${item.topic}" style="color:#000;">${item.topic}</span>
           </div>
           <h2><a href="${item.url}" style="text-decoration:none;color:#000;">${item.title}</a></h2>
         </article>
@@ -246,6 +228,7 @@
 
     renderNews();
 
+    // ==== メニュー開閉 ====
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const logo = document.getElementById('logo');
