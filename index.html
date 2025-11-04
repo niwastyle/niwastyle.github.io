@@ -5,41 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>庭style｜井ノ岡里子の絵とその空間演出</title>
 
-  <!-- ===== ブランド・サイト情報 ===== -->
-  <meta name="description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
-  <meta name="keywords" content="庭style, 井ノ岡里子, 絵画, アート, 空間演出, 展覧会, 日本画">
-  <meta name="author" content="庭style">
-  <meta property="og:site_name" content="庭style">
+  <!-- ===== サイト名・ブランド強調 ===== -->
   <meta name="application-name" content="庭style">
+  <meta property="og:site_name" content="庭style">
+  <meta name="author" content="庭style">
 
-  <!-- ===== OGP設定（SNS・LINEシェアなど用） ===== -->
+  <!-- ===== SEO・SNS対策 ===== -->
+  <meta name="description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
   <meta property="og:title" content="庭style｜井ノ岡里子の絵とその空間演出">
-  <meta property="og:description" content="自然の中で写生して感じとれた感動が少しでも伝わるといいな。無味即真味。">
+  <meta property="og:description" content="井ノ岡里子の絵とその空間演出。自然の中で写生して感じとれた感動が少しでも伝わるといいな。">
+  <meta property="og:image" content="https://niwastyle.github.io/file/icon.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://niwastyle.github.io/">
-  <meta property="og:image" content="https://niwastyle.github.io/file/icon.jpg">
-  <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="庭style｜井ノ岡里子の絵とその空間演出">
-  <meta name="twitter:description" content="自然の中で写生して感じとれた感動が少しでも伝わるといいな。">
-  <meta name="twitter:image" content="https://niwastyle.github.io/file/icon.jpg">
 
-  <!-- ===== ファビコン・アイコン設定 ===== -->
-  <link rel="icon" type="image/jpeg" href="file/icon.jpg">
-  <link rel="apple-touch-icon" href="file/icon.jpg">
-  <link rel="shortcut icon" type="image/jpeg" href="file/icon.jpg">
+  <!-- ===== ファビコン & 各デバイスアイコン ===== -->
+  <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="/file/icon.jpg">
+  <link rel="shortcut icon" href="/file/icon.jpg" type="image/jpeg">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- ===== フォント設定 ===== -->
-  @font-face {
-    font-family: 'NotoSerifJP-Regular';
-    src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
-  }
-  @font-face {
-    font-family: 'NotoSerifJP-Bold';
-    src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
-  }
-
   <style>
+    @font-face {
+      font-family: 'NotoSerifJP-Regular';
+      src: url('file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'NotoSerifJP-Bold';
+      src: url('file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+    }
+
     /* ==== 基本設定 ==== */
     html, body {
       margin: 0;
@@ -77,6 +73,7 @@
       letter-spacing: 0.1em;
       text-shadow: 0 0 10px rgba(0,0,0,0.6);
       transition: all 0.6s ease;
+      font-family: 'NotoSerifJP-Bold', serif;
     }
     .logo.menu-open {
       left: 50%;
@@ -183,8 +180,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <!-- 固定ロゴ -->
   <div class="logo">庭style</div>
 
@@ -223,6 +220,7 @@
     © Copyright Niwa Style All Rights Reserved.
   </footer>
 
+  <!-- ===== JS ===== -->
   <script>
     // 背景フェード
     const slides = document.querySelectorAll('.background');
