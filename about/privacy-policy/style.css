@@ -1,0 +1,155 @@
+/* ==== フォント ==== */
+@font-face {
+  font-family: 'NotoSerifJP-Regular';
+  src: url('/file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NotoSerifJP-Bold';
+  src: url('/file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+}
+
+/* ==== 基本設定 ==== */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #222;
+  font-family: 'NotoSerifJP-Regular', serif;
+  line-height: 1.9;
+}
+
+/* ==== 固定ロゴ ==== */
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  font-size: 2.2rem;
+  color: #000;
+  z-index: 40;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: all 0.6s ease;
+  font-family: 'NotoSerifJP-Bold', serif;
+}
+.logo.menu-open {
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* ==== メニューボタン ==== */
+.menu-button {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  font-size: 1.2rem;
+  color: #000;
+  z-index: 50;
+  background: none;
+  border: none;
+  font-family: 'NotoSerifJP-Bold', serif;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+.menu-button.menu-open {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+/* ==== メニューオーバーレイ ==== */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.96);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.menu-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 80px;
+  text-align: center;
+}
+.menu-links a {
+  font-family: 'NotoSerifJP-Bold', serif;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s;
+}
+.menu-links a:hover {
+  opacity: 0.6;
+}
+
+/* ==== 本文 ==== */
+main.policy {
+  max-width: 900px;
+  margin: 160px auto 100px;
+  padding: 0 20px;
+}
+main.policy h1 {
+  text-align: center;
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 2rem;
+  margin-bottom: 60px;
+  letter-spacing: 0.05em;
+}
+main.policy h2 {
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 1.3rem;
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+  border-left: 4px solid #000;
+  padding-left: 10px;
+}
+main.policy p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0 0 1.5em;
+}
+main.policy a {
+  color: #3366cc;
+  text-decoration: underline;
+  transition: opacity 0.3s;
+}
+main.policy a:hover {
+  opacity: 0.7;
+}
+main.policy .intro {
+  text-align: center;
+  margin-bottom: 3em;
+  font-size: 1.05rem;
+  color: #444;
+}
+main.policy .dates {
+  text-align: right;
+  margin-top: 60px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* ==== フッター ==== */
+footer {
+  background: #fff;
+  text-align: center;
+  padding: 40px 0 60px;
+  font-family: 'NotoSerifJP-Regular', serif;
+  font-size: 0.9rem;
+  color: #555;
+  letter-spacing: 0.05em;
+}
