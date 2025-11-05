@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>秋の庭展示会レポート｜庭style</title>
+  <link rel="stylesheet" href="/topics/style.css">
+</head>
+<body>
+
+  <a href="/" class="logo" id="logo">庭style</a>
+  <button class="menu-button" id="menuBtn">menu</button>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-links">
+      <a href="/about">ABOUT</a>
+      <a href="/profile">PROFILE</a>
+      <a href="/news">NEWS</a>
+      <a href="/topics">TOPICS</a>
+      <a href="/instagram">INSTAGRAM</a>
+      <a href="/contact">CONTACT</a>
+    </div>
+  </div>
+
+  <main class="article">
+    <div class="news-meta">
+      <span class="date">2025.11.05</span>
+      <span class="topic topic-展示">展示</span>
+    </div>
+    <h1>秋の庭展示会レポート</h1>
+
+    <div class="gallery-info">
+      <img src="/file/sample01.jpg" alt="秋の展示会の様子">
+    </div>
+
+    <p>
+      秋の柔らかな光に包まれた庭で、今年も展示会が開催されました。  
+      植物の成長や季節の移ろいをテーマにした作品が並び、多くの方に足を運んでいただきました。  
+      ご来場くださった皆さま、本当にありがとうございました。
+    </p>
+
+    <a href="/topics">← TOPICS一覧に戻る</a>
+  </main>
+
+  <footer>
+    © Copyright Niwa Style All Rights Reserved.
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const logo = document.getElementById('logo');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuOverlay.classList.toggle('active', menuOpen);
+      menuBtn.textContent = menuOpen ? 'close' : 'menu';
+      menuBtn.classList.toggle('menu-open', menuOpen);
+      logo.classList.toggle('menu-open', menuOpen);
+    });
+  </script>
+</body>
+</html>
