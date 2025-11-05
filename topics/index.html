@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TOPICS｜庭style</title>
 
-  <!-- favicon / OGP設定 -->
+  <!-- favicon / OGP -->
   <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="/file/icon.jpg">
   <meta property="og:title" content="TOPICS｜庭style">
@@ -15,6 +15,29 @@
   <meta property="og:url" content="https://niwastyle.github.io/topics">
 
   <link rel="stylesheet" href="/topics/style.css">
+  <style>
+    /* ==== ページネーションの色修正 ==== */
+    .pagination button {
+      color: #000;
+    }
+    .pagination button:focus {
+      outline: none;
+    }
+    .pagination button.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+    /* ==== グリッド固定幅 ==== */
+    #topicsList {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      #topicsList { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -36,7 +59,7 @@
     </div>
   </div>
 
-  <!-- TOPICSページ -->
+  <!-- TOPICS本体 -->
   <main class="topics">
     <h1>TOPICS</h1>
 
@@ -50,86 +73,79 @@
       <button data-topic="その他" class="filter-その他">その他</button>
     </div>
 
-    <!-- トピックス一覧 -->
-    <div id="topicsList"></div>
+    <!-- トピック一覧（20件） -->
+    <div id="topicsList">
+
+      <article class="topic-item">
+        <a href="/topics/2025110501">
+          <div class="img-wrap"><img src="/file/sample01.jpg" alt=""></div>
+          <div class="topic-meta"><span class="date">2025.11.05</span><span class="topic topic-井ノ岡の日常">井ノ岡の日常</span></div>
+          <h2>秋の庭で過ごす時間</h2>
+        </a>
+      </article>
+
+      <article class="topic-item">
+        <a href="/topics/2025110401">
+          <div class="img-wrap"><img src="/file/sample02.jpg" alt=""></div>
+          <div class="topic-meta"><span class="date">2025.11.04</span><span class="topic topic-はじめの日常">はじめの日常</span></div>
+          <h2>散歩途中に見つけた紅葉</h2>
+        </a>
+      </article>
+
+      <article class="topic-item">
+        <a href="/topics/2025110301">
+          <div class="img-wrap"><img src="/file/sample03.jpg" alt=""></div>
+          <div class="topic-meta"><span class="date">2025.11.03</span><span class="topic topic-お知らせ">お知らせ</span></div>
+          <h2>新しい作品集を公開しました</h2>
+        </a>
+      </article>
+
+      <article class="topic-item">
+        <a href="/topics/2025110201">
+          <div class="img-wrap"><img src="/file/sample04.jpg" alt=""></div>
+          <div class="topic-meta"><span class="date">2025.11.02</span><span class="topic topic-イベント情報">イベント情報</span></div>
+          <h2>庭づくりワークショップ開催</h2>
+        </a>
+      </article>
+
+      <article class="topic-item">
+        <a href="/topics/2025110101">
+          <div class="img-wrap"><img src="/file/sample05.jpg" alt=""></div>
+          <div class="topic-meta"><span class="date">2025.11.01</span><span class="topic topic-その他">その他</span></div>
+          <h2>スタッフ募集のお知らせ</h2>
+        </a>
+      </article>
+
+      <!-- 以下ダミー15件 -->
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample01.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.31</span><span class="topic topic-お知らせ">お知らせ</span></div><h2>庭のメンテナンス予定</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample02.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.30</span><span class="topic topic-井ノ岡の日常">井ノ岡の日常</span></div><h2>朝露と庭の時間</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample03.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.29</span><span class="topic topic-イベント情報">イベント情報</span></div><h2>庭スタイル展覧会</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample04.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.28</span><span class="topic topic-はじめの日常">はじめの日常</span></div><h2>夜明けの植物たち</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample05.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.27</span><span class="topic topic-その他">その他</span></div><h2>撮影の裏話</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample01.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.26</span><span class="topic topic-井ノ岡の日常">井ノ岡の日常</span></div><h2>猫と庭の午後</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample02.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.25</span><span class="topic topic-イベント情報">イベント情報</span></div><h2>展示会レポート</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample03.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.24</span><span class="topic topic-お知らせ">お知らせ</span></div><h2>年末のスケジュール</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample04.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.23</span><span class="topic topic-はじめの日常">はじめの日常</span></div><h2>夕暮れの一枚</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample05.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.22</span><span class="topic topic-その他">その他</span></div><h2>小物づくりの話</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample01.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.21</span><span class="topic topic-お知らせ">お知らせ</span></div><h2>秋の休業日について</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample02.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.20</span><span class="topic topic-井ノ岡の日常">井ノ岡の日常</span></div><h2>庭で見つけた虫たち</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample03.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.19</span><span class="topic topic-イベント情報">イベント情報</span></div><h2>秋のイベント準備</h2></a></article>
+      <article class="topic-item"><a href="#"><div class="img-wrap"><img src="/file/sample05.jpg" alt=""></div><div class="topic-meta"><span class="date">2025.10.17</span><span class="topic topic-その他">その他</span></div><h2>展示什器のこと</h2></a></article>
+
+    </div>
 
     <!-- ページネーション -->
-    <div class="pagination" id="pagination"></div>
+    <div class="pagination">
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+    </div>
+
   </main>
 
-  <!-- コピーライト -->
-  <footer>
-    © Copyright Niwa Style All Rights Reserved.
-  </footer>
+  <footer>© Copyright Niwa Style All Rights Reserved.</footer>
 
   <script>
-    // ==== トピックスデータ（デモ20件） ====
-    const topicsData = [
-      { date: '2025.11.05', topic: '井ノ岡の日常', title: '秋の庭で過ごす時間', img: '/file/sample01.jpg', url: '/topics/2025110501' },
-      { date: '2025.11.04', topic: 'はじめの日常', title: '散歩途中に見つけた紅葉', img: '/file/sample02.jpg', url: '/topics/2025110401' },
-      { date: '2025.11.03', topic: 'お知らせ', title: '新しい作品集を公開しました', img: '/file/sample03.jpg', url: '/topics/2025110301' },
-      { date: '2025.11.02', topic: 'イベント情報', title: '庭づくりワークショップ開催', img: '/file/sample04.jpg', url: '/topics/2025110201' },
-      { date: '2025.11.01', topic: 'その他', title: 'スタッフ募集のお知らせ', img: '/file/sample05.jpg', url: '/topics/2025110101' },
-      // 以下はダミーで繰り返し
-      ...Array.from({length: 15}).map((_, i) => ({
-        date: `2025.10.${20 - i}`,
-        topic: ['お知らせ','井ノ岡の日常','はじめの日常','イベント情報','その他'][i % 5],
-        title: `トピックサンプル記事 ${i+6}`,
-        img: `/file/sample${(i%5)+1}.jpg`,
-        url: `/topics/202510${20-i}01`
-      }))
-    ];
-
-    const list = document.getElementById('topicsList');
-    const pagination = document.getElementById('pagination');
-    const topicButtons = document.querySelectorAll('.topic-filters button');
-    const itemsPerPage = 9;
-    let currentPage = 1;
-    let currentTopic = 'all';
-
-    function renderTopics() {
-      const filtered = topicsData.filter(item => currentTopic === 'all' || item.topic === currentTopic);
-      const totalPages = Math.ceil(filtered.length / itemsPerPage);
-      const start = (currentPage - 1) * itemsPerPage;
-      const pageItems = filtered.slice(start, start + itemsPerPage);
-
-      list.innerHTML = pageItems.map(item => `
-        <article class="topic-item">
-          <a href="${item.url}">
-            <div class="img-wrap"><img src="${item.img}" alt="${item.title}"></div>
-            <div class="topic-meta">
-              <span class="date">${item.date}</span>
-              <span class="topic topic-${item.topic}">${item.topic}</span>
-            </div>
-            <h2>${item.title}</h2>
-          </a>
-        </article>
-      `).join('');
-
-      pagination.innerHTML = '';
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
-        if (i === currentPage) btn.classList.add('active');
-        btn.addEventListener('click', () => {
-          currentPage = i;
-          renderTopics();
-        });
-        pagination.appendChild(btn);
-      }
-    }
-
-    topicButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentTopic = btn.dataset.topic;
-        currentPage = 1;
-        renderTopics();
-      });
-    });
-
-    renderTopics();
-
-    // ==== メニュー開閉 ====
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const logo = document.getElementById('logo');
@@ -142,5 +158,6 @@
       logo.classList.toggle('menu-open', menuOpen);
     });
   </script>
+
 </body>
 </html>
