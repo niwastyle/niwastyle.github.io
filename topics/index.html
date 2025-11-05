@@ -5,63 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TOPICS｜庭style</title>
 
-  <!-- favicon / Appleアイコン / OGP設定 -->
+  <!-- favicon / OGP設定 -->
   <link rel="icon" href="/file/icon.jpg" type="image/jpeg">
   <link rel="apple-touch-icon" href="/file/icon.jpg">
   <meta property="og:title" content="TOPICS｜庭style">
-  <meta property="og:description" content="庭styleの日常やお知らせを写真付きでお届けします。">
+  <meta property="og:description" content="庭styleの日常・お知らせ・イベント情報など。">
   <meta property="og:image" content="/file/icon.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://niwastyle.github.io/topics">
 
-  <link rel="stylesheet" href="/news/style.css">
-  <style>
-    /* ==== トピックスカード ==== */
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .topic-card {
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      background: #fff;
-    }
-    .topic-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-    .topic-card img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-    }
-    .topic-card-content {
-      padding: 18px;
-    }
-    .topic-card-content .meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-    }
-    .topic-card-content h2 {
-      font-family: 'NotoSerifJP-Bold', serif;
-      font-size: 1.1rem;
-      margin: 0;
-      color: #000;
-      line-height: 1.5;
-    }
-    .topic-card-content a {
-      text-decoration: none;
-      color: inherit;
-    }
-  </style>
+  <link rel="stylesheet" href="/topics/style.css">
 </head>
 <body>
 
@@ -83,9 +36,11 @@
     </div>
   </div>
 
-  <main class="news">
+  <!-- TOPICSページ -->
+  <main class="topics">
     <h1>TOPICS</h1>
 
+    <!-- トピックフィルター -->
     <div class="topic-filters">
       <button data-topic="all" class="filter-all">すべて</button>
       <button data-topic="お知らせ" class="filter-お知らせ">お知らせ</button>
@@ -95,46 +50,40 @@
       <button data-topic="その他" class="filter-その他">その他</button>
     </div>
 
-    <!-- 一覧 -->
-    <div class="topics-grid" id="topicsGrid"></div>
+    <!-- トピックス一覧 -->
+    <div id="topicsList"></div>
 
+    <!-- ページネーション -->
     <div class="pagination" id="pagination"></div>
   </main>
 
+  <!-- コピーライト -->
   <footer>
     © Copyright Niwa Style All Rights Reserved.
   </footer>
 
   <script>
+    // ==== トピックスデータ（デモ20件） ====
     const topicsData = [
-      { date: '2025.11.05', topic: '井ノ岡の日常', title: '秋の庭でくつろぐ時間', url: '/topics/2025110501', img: '/file/demo/1.jpg' },
-      { date: '2025.11.04', topic: 'はじめの日常', title: '新しい鉢植えを迎えました', url: '#', img: '/file/demo/2.jpg' },
-      { date: '2025.11.03', topic: 'お知らせ', title: '年末年始の営業について', url: '#', img: '/file/demo/3.jpg' },
-      { date: '2025.11.02', topic: 'イベント情報', title: '冬の展示会のお知らせ', url: '#', img: '/file/demo/4.jpg' },
-      { date: '2025.10.31', topic: '井ノ岡の日常', title: 'はじめとのお散歩日和', url: '#', img: '/file/demo/5.jpg' },
-      { date: '2025.10.30', topic: 'その他', title: 'サイトのメンテナンス情報', url: '#', img: '/file/demo/6.jpg' },
-      // 以下デモで増やす
-      { date: '2025.10.29', topic: 'お知らせ', title: '庭のお手入れ講座のご案内', url: '#', img: '/file/demo/7.jpg' },
-      { date: '2025.10.28', topic: '井ノ岡の日常', title: '小さな発見の日', url: '#', img: '/file/demo/8.jpg' },
-      { date: '2025.10.27', topic: 'はじめの日常', title: '朝日を浴びて', url: '#', img: '/file/demo/9.jpg' },
-      { date: '2025.10.26', topic: 'イベント情報', title: 'アートマルシェに出展します', url: '#', img: '/file/demo/10.jpg' },
-      { date: '2025.10.25', topic: 'お知らせ', title: '秋休みのお知らせ', url: '#', img: '/file/demo/11.jpg' },
-      { date: '2025.10.24', topic: '井ノ岡の日常', title: '木漏れ日の午後', url: '#', img: '/file/demo/12.jpg' },
-      { date: '2025.10.23', topic: 'はじめの日常', title: '落ち葉と遊ぶ', url: '#', img: '/file/demo/13.jpg' },
-      { date: '2025.10.22', topic: 'イベント情報', title: '庭styleワークショップ', url: '#', img: '/file/demo/14.jpg' },
-      { date: '2025.10.21', topic: 'その他', title: 'ウェブサイト更新情報', url: '#', img: '/file/demo/15.jpg' },
-      { date: '2025.10.20', topic: 'お知らせ', title: 'Instagram更新しました', url: '#', img: '/file/demo/16.jpg' },
-      { date: '2025.10.19', topic: '井ノ岡の日常', title: '猫のはじめと一緒に', url: '#', img: '/file/demo/17.jpg' },
-      { date: '2025.10.18', topic: 'はじめの日常', title: '新しいカメラで撮影', url: '#', img: '/file/demo/18.jpg' },
-      { date: '2025.10.17', topic: 'イベント情報', title: '庭フェス2025 開催決定', url: '#', img: '/file/demo/19.jpg' },
-      { date: '2025.10.16', topic: 'その他', title: '今月のアクセスレポート', url: '#', img: '/file/demo/20.jpg' },
+      { date: '2025.11.05', topic: '井ノ岡の日常', title: '秋の庭で過ごす時間', img: '/file/sample01.jpg', url: '/topics/2025110501' },
+      { date: '2025.11.04', topic: 'はじめの日常', title: '散歩途中に見つけた紅葉', img: '/file/sample02.jpg', url: '/topics/2025110401' },
+      { date: '2025.11.03', topic: 'お知らせ', title: '新しい作品集を公開しました', img: '/file/sample03.jpg', url: '/topics/2025110301' },
+      { date: '2025.11.02', topic: 'イベント情報', title: '庭づくりワークショップ開催', img: '/file/sample04.jpg', url: '/topics/2025110201' },
+      { date: '2025.11.01', topic: 'その他', title: 'スタッフ募集のお知らせ', img: '/file/sample05.jpg', url: '/topics/2025110101' },
+      // 以下はダミーで繰り返し
+      ...Array.from({length: 15}).map((_, i) => ({
+        date: `2025.10.${20 - i}`,
+        topic: ['お知らせ','井ノ岡の日常','はじめの日常','イベント情報','その他'][i % 5],
+        title: `トピックサンプル記事 ${i+6}`,
+        img: `/file/sample${(i%5)+1}.jpg`,
+        url: `/topics/202510${20-i}01`
+      }))
     ];
 
-    const topicsGrid = document.getElementById('topicsGrid');
+    const list = document.getElementById('topicsList');
     const pagination = document.getElementById('pagination');
     const topicButtons = document.querySelectorAll('.topic-filters button');
-
-    const itemsPerPage = 8;
+    const itemsPerPage = 9;
     let currentPage = 1;
     let currentTopic = 'all';
 
@@ -144,19 +93,17 @@
       const start = (currentPage - 1) * itemsPerPage;
       const pageItems = filtered.slice(start, start + itemsPerPage);
 
-      topicsGrid.innerHTML = pageItems.map(item => `
-        <div class="topic-card">
+      list.innerHTML = pageItems.map(item => `
+        <article class="topic-item">
           <a href="${item.url}">
-            <img src="${item.img}" alt="${item.title}">
-            <div class="topic-card-content">
-              <div class="meta">
-                <span class="date">${item.date}</span>
-                <span class="topic topic-${item.topic}">${item.topic}</span>
-              </div>
-              <h2>${item.title}</h2>
+            <div class="img-wrap"><img src="${item.img}" alt="${item.title}"></div>
+            <div class="topic-meta">
+              <span class="date">${item.date}</span>
+              <span class="topic topic-${item.topic}">${item.topic}</span>
             </div>
+            <h2>${item.title}</h2>
           </a>
-        </div>
+        </article>
       `).join('');
 
       pagination.innerHTML = '';
@@ -182,7 +129,7 @@
 
     renderTopics();
 
-    // ==== メニュー ====
+    // ==== メニュー開閉 ====
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const logo = document.getElementById('logo');
