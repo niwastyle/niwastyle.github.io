@@ -1,0 +1,216 @@
+/* ==== フォント ==== */
+@font-face {
+  font-family: 'NotoSerifJP-Regular';
+  src: url('/file/font/noto/NotoSerifJP-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NotoSerifJP-Bold';
+  src: url('/file/font/noto/NotoSerifJP-ExtraBold.ttf') format('truetype');
+}
+
+/* ==== 基本設定 ==== */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #000;
+  font-family: 'NotoSerifJP-Regular', serif;
+}
+
+/* ==== 固定ロゴ・メニュー ==== */
+.logo, .menu-button, .menu-overlay, .menu-links, footer {
+  all: unset;
+}
+.logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  font-size: 2.2rem;
+  color: #000;
+  z-index: 40;
+  text-decoration: none;
+  font-family: 'NotoSerifJP-Bold', serif;
+  transition: all 0.6s ease;
+}
+.logo.menu-open {
+  color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.menu-button {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  background: none;
+  border: none;
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000;
+  z-index: 50;
+  transition: 0.3s;
+}
+.menu-button.menu-open { color: #fff; text-shadow: 0 0 8px rgba(0,0,0,0.6); }
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.96);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+  z-index: 30;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+.menu-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 80px;
+  text-align: center;
+}
+.menu-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: 'NotoSerifJP-Bold', serif;
+  transition: opacity 0.3s;
+}
+.menu-links a:hover { opacity: 0.6; }
+
+/* ==== TOPICSページ ==== */
+main.topics {
+  max-width: 1000px;
+  margin: 160px auto 100px;
+  padding: 0 20px;
+}
+main.topics h1 {
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* ==== トピックフィルター ==== */
+.topic-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.topic-filters button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'NotoSerifJP-Bold', serif;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  color: #000;
+}
+.topic-filters button:hover { opacity: 0.7; }
+.filter-庭 { background: linear-gradient(90deg, #90e5c1, #47b78a); }
+.filter-日常 { background: linear-gradient(90deg, #ffa648, #ffe36d); }
+.filter-展示 { background: linear-gradient(90deg, #e85b9c, #f8c2d9); }
+.filter-その他 { background: linear-gradient(90deg, #ccc, #999); }
+
+/* ==== カードレイアウト ==== */
+.topics-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.topic-card a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.topic-card a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.topic-card a:hover img {
+  transform: scale(1.05);
+}
+.info {
+  padding: 10px 4px;
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+.meta .date { color: #666; }
+.topic {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #000;
+}
+.topic-庭 { background: linear-gradient(90deg, #90e5c1, #47b78a); }
+.topic-日常 { background: linear-gradient(90deg, #ffa648, #ffe36d); }
+.topic-展示 { background: linear-gradient(90deg, #e85b9c, #f8c2d9); }
+.topic-その他 { background: linear-gradient(90deg, #ccc, #999); }
+
+/* ==== 個別記事 ==== */
+main.article {
+  max-width: 800px;
+  margin: 160px auto 100px;
+  padding: 0 20px;
+}
+main.article h1 {
+  font-family: 'NotoSerifJP-Bold', serif;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+main.article p {
+  font-family: 'NotoSerifJP-Regular', serif;
+  line-height: 2;
+  color: #333;
+  white-space: pre-line;
+  font-size: 1rem;
+}
+main.article a {
+  display: inline-block;
+  padding: 10px 16px;
+  margin-top: 30px;
+  border: 1.5px solid #333;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s;
+}
+main.article a:hover {
+  background: #333;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* ==== フッター ==== */
+footer {
+  text-align: center;
+  padding: 40px 0 60px;
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
