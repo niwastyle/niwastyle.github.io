@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>秋の庭のメンテナンス｜庭style</title>
-  <link rel="stylesheet" href="/topics/style.css">
+  <title>秋の庭でくつろぐ時間｜庭style</title>
+  <link rel="stylesheet" href="/news/style.css">
 </head>
 <body>
 
@@ -23,37 +23,39 @@
   </div>
 
   <main class="article">
-    <h1>秋の庭のメンテナンス</h1>
+    <h1>秋の庭でくつろぐ時間</h1>
     <div class="news-meta">
       <span class="date">2025.11.05</span>
       <span class="topic topic-井ノ岡の日常">井ノ岡の日常</span>
     </div>
+
     <div class="gallery-info">
-      <img src="/file/sample01.jpg" alt="秋の庭">
+      <img src="/file/demo/1.jpg" alt="秋の庭でくつろぐ時間">
+      <p>
+        秋の穏やかな午後、庭のベンチでコーヒーを片手に過ごしました。  
+        木々の葉が少しずつ色づいてきて、風の音が心地よい季節です。  
+        はじめも一緒にのんびりしていました☕🍂
+      </p>
     </div>
 
-    <p>
-      秋は庭のメンテナンスに最適な季節です。<br>
-      夏に伸びた枝を整え、落ち葉を集め、次の春に向けて土を整えます。<br><br>
-      この季節にしっかり手を入れることで、冬の間も庭が美しく保たれます。<br>
-      風に舞う紅葉を眺めながら、ゆっくりと庭時間を楽しみましょう。
-    </p>
-
-    <a href="/topics">← TOPICS一覧へ戻る</a>
+    <a href="/topics">← トピックス一覧へ戻る</a>
   </main>
 
-  <footer>© Copyright Niwa Style All Rights Reserved.</footer>
+  <footer>
+    © Copyright Niwa Style All Rights Reserved.
+  </footer>
 
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const logo = document.getElementById('logo');
-    let open = false;
+    let menuOpen = false;
     menuBtn.addEventListener('click', () => {
-      open = !open;
-      menuOverlay.classList.toggle('active', open);
-      menuBtn.textContent = open ? 'close' : 'menu';
-      logo.classList.toggle('menu-open', open);
+      menuOpen = !menuOpen;
+      menuOverlay.classList.toggle('active', menuOpen);
+      menuBtn.textContent = menuOpen ? 'close' : 'menu';
+      menuBtn.classList.toggle('menu-open', menuOpen);
+      logo.classList.toggle('menu-open', menuOpen);
     });
   </script>
 </body>
